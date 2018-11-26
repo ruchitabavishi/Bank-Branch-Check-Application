@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css" />
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1 class="header">Bank Branch Check Application</h1>
+    <div ng-app="bankBranchCheckApp" class="app">
+        <div ng-controller="banckBranchCheckController">
+           <div style="margin-top:25px;margin-left:10px;">
+                    <span>select City : </span>
+                    <select ng-model="selectedCity" ng-options="x for x in names" ng-change="fetchCityDetails(selectedCity)"></select>
+                   <span>search : </span>
+                    <input type="text" ng-model="test" placeholder="search...">
+             </div>
+            <table style="overflow:auto;overflow-y:auto">
+                <tr style="background-color:#4CAF50;color:white">
+                    <th>IFSC</th>
+                    <th>Bank Id</th>
+                    <th>Bank Name</th>
+                    <th>Branch</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>District</th>
+                    <th>State</th>
+                </tr>
+                <tr ng-repeat="x in objs | filter:test">
+
+                    <td ng-bind-html="x.ifsc | highlight:test">{{ x.ifsc }}</td>
+
+                    <td ng-bind-html="x.bank_id | highlight:test">{{ x.bank_id }}</td>
+
+                    <td ng-bind-html="x.bank_name | highlight:test">{{ x.bank_name }}</td>
+
+                    <td ng-bind-html="x.branch | highlight:test">{{ x.branch }}</td>
+
+                    <td ng-bind-html="x.address | highlight:test">{{ x.address }}</td>
+
+                    <td ng-bind-html="x.city | highlight:test">{{ x.city }}</td>
+
+                    <td ng-bind-html="x.district | highlight:test">{{ x.district }}</td>
+
+                    <td ng-bind-html="x.state | highlight:test">{{ x.state }}</td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
